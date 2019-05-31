@@ -1,4 +1,4 @@
-[![npm ](https://img.shields.io/npm/v/instapost.svg?style=flat-square)](https://www.npmjs.com/package/instapost) ![GitHub file size in bytes](https://img.shields.io/github/size/arkdevuk/InstaPost/dist/instapost.min.js.svg)
+[![npm ](https://img.shields.io/npm/v/instapost.svg?style=flat-square)](https://www.npmjs.com/package/instapost) ![GitHub file size in bytes](https://img.shields.io/github/size/arkdevuk/InstaPost/dist/instapost.min.js.svg?style=flat-square)
 
 # InstaPost
 Embed instagram post for lazy dev :D
