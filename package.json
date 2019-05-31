@@ -1,0 +1,16 @@
+{
+  "name": "InstaPost",
+  "description": "Embed instagram post for lazy dev :D",
+  "author": "Arkdevuk",
+  "version": "0.0.1",
+  "main": "/dist/instapost.min.js",
+  "license": "MIT",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arkdevuk/InstaPost.git"
+  },
+  "dependencies": {
+  }
+}

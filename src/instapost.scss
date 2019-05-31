@@ -1,0 +1,21 @@
+.instapost {
+  min-width: 326px;
+  max-width: 658px;
+  margin:auto;
+  position:relative;
+  &.instapost_lg {
+    width:100%;
+  }
+
+  &.instapost_md {
+    width:60%;
+  }
+
+  &.instapost_sm {
+    width:30%;
+  }
+
+  iframe{
+    width:100%;
+  }
+}
