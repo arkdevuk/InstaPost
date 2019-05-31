@@ -85,7 +85,11 @@
     window.instapost = {
         init: function(selector) {
             let instPost = new InstaPost();
-            instPost.createFromElement(document.querySelectorAll(selector));
+            if(typeof selector === 'string'){
+                instPost.createFromElement(document.querySelectorAll(selector));
+                return;
+            }
+            instPost.createFromElement(selector);
         }
     };
 

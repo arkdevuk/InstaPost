@@ -97,7 +97,13 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     window.instapost = {
         init: function init(selector) {
             var instPost = new InstaPost();
-            instPost.createFromElement(document.querySelectorAll(selector));
+
+            if (typeof selector === 'string') {
+                instPost.createFromElement(document.querySelectorAll(selector));
+                return;
+            }
+
+            instPost.createFromElement(selector);
         }
     };
 })();
