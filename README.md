@@ -1,7 +1,17 @@
+[![npm ](https://img.shields.io/npm/v/instapost.svg?style=flat-square)](https://www.npmjs.com/package/instapost) ![GitHub file size in bytes](https://img.shields.io/github/size/arkdevuk/InstaPost/dist/instapost.min.js.svg)
+
 # InstaPost
 Embed instagram post for lazy dev :D
 
-## Usage
+## Use as npm package
+
+See on [npm](https://www.npmjs.com/package/instapost)
+
+```
+npm install -D instapost
+```
+
+## Basic Use
 
 See the [Demo](https://codepen.io/jclf2018/full/yWRmrV) on codepen.io
 
