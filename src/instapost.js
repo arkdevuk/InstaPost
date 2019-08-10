@@ -38,8 +38,16 @@
             for (let attr in attribute) {
                 s.setAttribute(attr, attribute[attr] ? attribute[attr] : null)
             }
-            s.innerHTML = text;
-            s.onload = callback;
+            if(text === undefined){
+                s.innerHTML = '';
+            } else {
+                s.innerHTML = text;
+            }
+
+            if(callback !== undefined){
+                s.onload = callback();
+            }
+
             document.body.appendChild(s);
         };
         this.createFromElement = (el) => {
@@ -61,10 +69,14 @@
                     src: 'https://www.instagram.com/embed.js',
                     type: 'text/javascript',
                     async: true
+                },'',() => {
+                    let opa = new InstaPostInstance(el);
                 });
                 document.body.classList.add(classNameLoaded);
+            } else {
+                let opa = new InstaPostInstance(el);
             }
-            let opa = new InstaPostInstance(el);
+
         };
         //Returns true if it is a DOM node
         this.isNode = function (o) {

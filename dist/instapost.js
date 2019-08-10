@@ -49,8 +49,16 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
                 s.setAttribute(attr, attribute[attr] ? attribute[attr] : null);
             }
 
-            s.innerHTML = text;
-            s.onload = callback;
+            if (text === undefined) {
+                s.innerHTML = '';
+            } else {
+                s.innerHTML = text;
+            }
+
+            if (callback !== undefined) {
+                s.onload = callback();
+            }
+
             document.body.appendChild(s);
         };
 
@@ -74,12 +82,14 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
                     src: 'https://www.instagram.com/embed.js',
                     type: 'text/javascript',
                     async: true
+                }, '', function () {
+                    var opa = new InstaPostInstance(el);
                 });
 
                 document.body.classList.add(classNameLoaded);
+            } else {
+                var opa = new InstaPostInstance(el);
             }
-
-            var opa = new InstaPostInstance(el);
         }; //Returns true if it is a DOM node
 
 
