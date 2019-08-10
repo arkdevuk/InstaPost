@@ -42,7 +42,6 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     var InstaPost = function InstaPost() {
         var _this = this;
 
-        this.queue = [];
         var self = this;
 
         this.addScript = function (attribute, text, callback) {
@@ -65,12 +64,6 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
             document.body.appendChild(s);
         };
 
-        this.treatQueue = function () {
-            for (var i = 0; i < this.queue.length; i++) {
-                var opa = new InstaPostInstance(this.queue[i]);
-            }
-        };
-
         this.createFromElement = function (el) {
             if (!_this.isElement(el)) {
                 if (el !== undefined && el.length > 0) {
@@ -87,7 +80,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
             var classNameLoaded = 'instapost_js_loaded__';
             var classNameReady = 'instapost_js_ready__';
 
-            if (!document.body.classList.contains(classNameLoaded)) {
+            if (!document.body.classList.contains(classNameReady)) {
                 if (!document.body.classList.contains(classNameLoaded)) {
                     _this.addScript({
                         src: 'https://www.instagram.com/embed.js',
@@ -95,13 +88,13 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
                         async: true
                     }, '', function () {
                         document.body.classList.add(classNameReady);
-                        self.treatQueue();
+                        window.instapost.treatQueue();
                     });
 
                     document.body.classList.add(classNameLoaded);
                 }
 
-                _this.queue.push(el);
+                window.instapost.queue.push(el);
             } else {
                 var opa = new InstaPostInstance(el);
             }
@@ -129,6 +122,19 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
             }
 
             instPost.createFromElement(selector);
+        },
+        queue: [],
+        activated: false,
+        treatQueue: function treatQueue() {
+            if (window.instapost.activated) {
+                return;
+            }
+
+            window.instapost.activated = true;
+
+            for (var i = 0; i < window.instapost.queue.length; i++) {
+                var opa = new InstaPostInstance(this.queue[i]);
+            }
         }
     };
 })();
