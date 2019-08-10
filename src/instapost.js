@@ -50,7 +50,7 @@
             }
 
             if(callback !== undefined){
-                s.onload = callback();
+                s.onload = callback;
             }
 
             document.body.appendChild(s);

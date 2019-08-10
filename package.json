@@ -2,7 +2,7 @@
   "name": "instapost",
   "description": "Embed instagram post for lazy dev :D",
   "author": "Arkdevuk",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "/dist/instapost.min.js",
   "license": "MIT",
   "scripts": {

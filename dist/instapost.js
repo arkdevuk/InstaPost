@@ -59,7 +59,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
             }
 
             if (callback !== undefined) {
-                s.onload = callback();
+                s.onload = callback;
             }
 
             document.body.appendChild(s);
