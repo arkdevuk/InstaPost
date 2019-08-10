@@ -32,7 +32,12 @@
 
     };
 
+
+
+
     const InstaPost = function () {
+        this.queue = [];
+        const self = this;
         this.addScript = function (attribute, text, callback) {
             let s = document.createElement('script');
             for (let attr in attribute) {
@@ -50,6 +55,13 @@
 
             document.body.appendChild(s);
         };
+
+        this.treatQueue = function(){
+            for(let i = 0; i < this.queue.length; i++){
+                let opa = new InstaPostInstance(this.queue[i]);
+            }
+        };
+
         this.createFromElement = (el) => {
             if (!this.isElement(el)) {
 
@@ -64,15 +76,22 @@
 
             }
             const classNameLoaded = 'instapost_js_loaded__';
+            const classNameReady = 'instapost_js_ready__';
+
+
             if (!document.body.classList.contains(classNameLoaded)) {
-                this.addScript({
-                    src: 'https://www.instagram.com/embed.js',
-                    type: 'text/javascript',
-                    async: true
-                },'',() => {
-                    let opa = new InstaPostInstance(el);
-                });
-                document.body.classList.add(classNameLoaded);
+                if (!document.body.classList.contains(classNameLoaded)) {
+                    this.addScript({
+                        src: 'https://www.instagram.com/embed.js',
+                        type: 'text/javascript',
+                        async: true
+                    },'',() => {
+                        document.body.classList.add(classNameReady);
+                        self.treatQueue();
+                    });
+                    document.body.classList.add(classNameLoaded);
+                }
+                this.queue.push(el);
             } else {
                 let opa = new InstaPostInstance(el);
             }

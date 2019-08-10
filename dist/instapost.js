@@ -42,6 +42,9 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     var InstaPost = function InstaPost() {
         var _this = this;
 
+        this.queue = [];
+        var self = this;
+
         this.addScript = function (attribute, text, callback) {
             var s = document.createElement('script');
 
@@ -62,6 +65,12 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
             document.body.appendChild(s);
         };
 
+        this.treatQueue = function () {
+            for (var i = 0; i < this.queue.length; i++) {
+                var opa = new InstaPostInstance(this.queue[i]);
+            }
+        };
+
         this.createFromElement = function (el) {
             if (!_this.isElement(el)) {
                 if (el !== undefined && el.length > 0) {
@@ -76,17 +85,23 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
             }
 
             var classNameLoaded = 'instapost_js_loaded__';
+            var classNameReady = 'instapost_js_ready__';
 
             if (!document.body.classList.contains(classNameLoaded)) {
-                _this.addScript({
-                    src: 'https://www.instagram.com/embed.js',
-                    type: 'text/javascript',
-                    async: true
-                }, '', function () {
-                    var opa = new InstaPostInstance(el);
-                });
+                if (!document.body.classList.contains(classNameLoaded)) {
+                    _this.addScript({
+                        src: 'https://www.instagram.com/embed.js',
+                        type: 'text/javascript',
+                        async: true
+                    }, '', function () {
+                        document.body.classList.add(classNameReady);
+                        self.treatQueue();
+                    });
 
-                document.body.classList.add(classNameLoaded);
+                    document.body.classList.add(classNameLoaded);
+                }
+
+                _this.queue.push(el);
             } else {
                 var opa = new InstaPostInstance(el);
             }
