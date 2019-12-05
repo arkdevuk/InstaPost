@@ -22,7 +22,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
                         window.instgrm.Embeds.process();
                     }
                 }
-            }).catch(function (error) {
+            })["catch"](function (error) {
                 return console.error(error);
             });
         };
@@ -113,15 +113,18 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     };
 
     window.instapost = {
+        instance: undefined,
         init: function init(selector) {
-            var instPost = new InstaPost();
+            if (window.instapost.instance === undefined) {
+                window.instapost.instance = new InstaPost();
+            }
 
             if (typeof selector === 'string') {
-                instPost.createFromElement(document.querySelectorAll(selector));
+                window.instapost.instance.createFromElement(document.querySelectorAll(selector));
                 return;
             }
 
-            instPost.createFromElement(selector);
+            window.instapost.instance.createFromElement(selector);
         },
         queue: [],
         activated: false,
